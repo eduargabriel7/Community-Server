@@ -21,6 +21,10 @@ apollo.start();
 apollo.applyMiddleware({ app });
 apollo.installSubscriptionHandlers(httpServer);
 
+app.get('/', (req, res) => {
+   res.send('hello world')
+})
+
 // listen express server
 const PORT = process.env.PORT || 4000;
 httpServer.listen(PORT, () => {
