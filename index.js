@@ -26,8 +26,6 @@ app.get('/', (req, res) => {
 })
 
 // listen express server
-const PORT = process.env.PORT || 4000;
-httpServer.listen(PORT, () => {
-   console.log(`🚀 Server ready at http://localhost:${PORT}${apollo.graphqlPath}`);
-   console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${apollo.subscriptionsPath}`);
+app.listen((process.env.PORT || 4000), () => {
+   console.log('Server is running');
 })
