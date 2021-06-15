@@ -8,7 +8,9 @@ const morgan = require('morgan');
 
 // create server
 const app = express();
-const httpServer = http.createServer(app);
+
+// create server http and web sockets
+const server_http_ws = http.createServer(app);
 
 // connection to database
 connection();
@@ -19,13 +21,9 @@ app.use(morgan('dev'));
 // apollo server express
 apollo.start();
 apollo.applyMiddleware({ app });
-apollo.installSubscriptionHandlers(httpServer);
-
-app.get('/', (req, res) => {
-   res.send('hello world')
-})
+apollo.installSubscriptionHandlers(server_http_ws);
 
 // listen express server
-app.listen((process.env.PORT || 4000), () => {
+server_http_ws.listen((process.env.PORT || 4000), () => {
    console.log('Server is running');
 })
